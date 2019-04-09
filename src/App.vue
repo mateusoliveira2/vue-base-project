@@ -1,13 +1,36 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <router-view/>
+    <h1>Preços do Bitcoin</h1>
+    <div class="list"> 
+        <div class="bitcoin-item" v-for="bitcoin in bitcoins" :key="bitcoin.code"> 
+                <price-component :bitcoin=bitcoin ></price-component> 
+        </div>
+
+    </div>
   </div>
 </template>
 
 <script>
+import PriceComponent from './components/PriceComponent'
+import axios from 'axios'
+
 export default {
-  name: 'App'
+    name: 'ListPrice',
+        data() {
+            return {
+                bitcoins : []
+            }
+        },
+        components: {
+            PriceComponent
+        },
+        mounted () {
+            axios
+            .get('https://api.coindesk.com/v1/bpi/currentprice.json')
+            .then(response => (
+                this.bitcoins =  response.data.bpi
+            ))
+        }
 }
 </script>
 
