@@ -5,7 +5,9 @@
         <div class="bitcoin-item"  v-for="bitcoin in bitcoins" :key="bitcoin.code"> 
                 <price-component  :bitcoin=bitcoin ></price-component> 
         </div>
-
+    </div>
+    <div class = "total"> 
+        <span> {{situacao}}</span>
     </div>
   </div>
 </template>
@@ -24,11 +26,15 @@ export default {
         components: {
             PriceComponent
         },
+        computed:{
+            
+        },
         mounted () {
             axios
             .get('https://api.coindesk.com/v1/bpi/currentprice.json')
             .then(response => (
                 this.bitcoins =  response.data.bpi
+                
             ))
         }
 }
