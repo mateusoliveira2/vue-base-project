@@ -2,8 +2,8 @@
   <div id="app">
     <h1>Preços do Bitcoin</h1>
     <div class="list"> 
-        <div class="bitcoin-item" v-for="bitcoin in bitcoins" :key="bitcoin.code"> 
-                <price-component :bitcoin=bitcoin ></price-component> 
+        <div class="bitcoin-item"  v-for="bitcoin in bitcoins" :key="bitcoin.code"> 
+                <price-component  :bitcoin=bitcoin ></price-component> 
         </div>
 
     </div>
@@ -39,7 +39,7 @@ export default {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+  
   color: #2c3e50;
   margin-top: 60px;
 }
