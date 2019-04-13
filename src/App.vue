@@ -6,8 +6,9 @@
                 <price-component  :bitcoin=bitcoin ></price-component> 
         </div>
     </div>
-    <div class = "total"> 
-        <span> {{situacao}}</span>
+    <div > 
+
+            {{numCliks}}
     </div>
   </div>
 </template>
@@ -15,8 +16,10 @@
 <script>
 import PriceComponent from './components/PriceComponent'
 import axios from 'axios'
+import store from './store/store'
 
 export default {
+    store,
     name: 'ListPrice',
         data() {
             return {
@@ -27,7 +30,14 @@ export default {
             PriceComponent
         },
         computed:{
-            
+            numCliks : function(){
+                return `${this.$store.state.count}`
+            }
+        }, 
+        methods: {
+            incrementar(){
+                this.$store.commit('INCREMENTAR')
+            }
         },
         mounted () {
             axios

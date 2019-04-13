@@ -1,11 +1,14 @@
 <template>
-    <div class = "priceBox">
+    <div @click="incrementar" class = "priceBox">
         <div class="descri">
             <span>{{ bitcoin.description }}:</span> 
             <span v-html="bitcoin.symbol"></span> {{bitcoin.rate_float | currencydecimal }} 
         </div>
+        <div>
+            {{exemploDeState}}
+         </div> 
     </div>
-    
+   
 </template>
 
 <script>
@@ -17,6 +20,16 @@ export default {
     filters: {
         currencydecimal (value) {
             return value.toFixed(2)
+        }
+    },
+    methods:{
+         incrementar(){
+                this.$store.commit('INCREMENTAR')
+        }
+    },
+    computed: {
+        exemploDeState: function(){
+            return `${this.$store.state.count}`
         }
     }
     
